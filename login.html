@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login and Signup Form</title>
+<style>
+ 
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px #000;
+    position: relative;
+    width: 300px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-group button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: lightgray;
+    color: black;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .button-group button.active {
+    background-color: #109f68;
+    color: white;
+  }
+
+  input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #109f68;
+    color: white;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #109f68;
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .form-footer a {
+    color: #109f68;
+    text-decoration: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="form-container" id="form-container">
+  <div class="button-group">
+    <button type="button" class="toggle-btn active" onclick="toggleForm('login')">Login</button>
+    <button type="button" class="toggle-btn" onclick="toggleForm('signup')">Signup</button>
+  </div>
+  
+  <form id="login-form">
+    <input type="email" placeholder="Email Address" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit" class="submit-btn">Login</button>
+    <div class="form-footer">
+      <a href="#">Forgot password?</a>
+    </div>
+  </form>
+  
+  <form id="signup-form" class="hidden">
+    <input type="email" placeholder="Email Address" required>
+    <input type="password" placeholder="Password" required>
+    <input type="password" placeholder="Confirm Password" required>
+    <button type="submit" class="submit-btn">Signup</button>
+  </form>
+  
+  <div class="form-footer" id="form-footer">
+    Not a member? <a href="#" onclick="toggleForm('signup')">Signup now</a>
+  </div>
+</div>
+
+<script>
+// Function to toggle between login and signup forms
+function toggleForm(formType) {
+  // Get the main container of the form
+  var container = document.getElementById('form-container');
+  // Get the login form by its ID
+  var loginForm = document.getElementById('login-form');
+  // Get the signup form by its ID
+  var signupForm = document.getElementById('signup-form');
+  // Get the first button in the button group, which is the login button
+  var loginBtn = container.querySelector('.toggle-btn:first-child');
+  // Get the second button in the button group, which is the signup button
+  var signupBtn = container.querySelector('.toggle-btn:last-child');
+  
+  // Check if the 'login' button was clicked
+  if (formType === 'login') {
+    // If so, remove the 'hidden' class from the login form to show it
+    loginForm.classList.remove('hidden');
+    // Add the 'hidden' class to the signup form to hide it
+    signupForm.classList.add('hidden');
+    // Add the 'active' class to the login button to highlight it
+    loginBtn.classList.add('active');
+    // Remove the 'active' class from the signup button to unhighlight it
+    signupBtn.classList.remove('active');
+  } 
+  // Otherwise, if the 'signup' button was clicked
+  else if (formType === 'signup') {
+    // Remove the 'hidden' class from the signup form to show it
+    signupForm.classList.remove('hidden');
+    // Add the 'hidden' class to the login form to hide it
+    loginForm.classList.add('hidden');
+    // Add the 'active' class to the signup button to highlight it
+    signupBtn.classList.add('active');
+    // Remove the 'active' class from the login button to unhighlight it
+    loginBtn.classList.remove('active');
+  }
+}
+
+// Set the default view to login when the page loads
+// We call the toggleForm function with 'login' to display the login form by default
+toggleForm('login');
+
+</script>
+
+</body>
+</html>
